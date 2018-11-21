@@ -4,6 +4,7 @@
 #import <AVKit/AVKit.h>
 #import "LandscapeVideo.h"
 #import "PortraitVideo.h"
+#import "RtspPlayerViewController.h"
 
 @interface StreamingMedia()
 - (void)parseOptions:(NSDictionary *) options type:(NSString *) type;
@@ -84,6 +85,11 @@ NSString * const DEFAULT_IMAGE_SCALE = @"center";
     callbackId = command.callbackId;
     NSString *mediaUrl  = [command.arguments objectAtIndex:0];
     [self parseOptions:[command.arguments objectAtIndex:1] type:type];
+    
+    if ( [[mediaUrl lowercaseString] hasPrefix:@"rtsp"] )  {
+        [self startRtspPlayer:mediaUrl];
+        return;
+    }
     
     [self startPlayer:mediaUrl];
 }
@@ -235,6 +241,15 @@ NSString * const DEFAULT_IMAGE_SCALE = @"center";
     
     // setup listners
     [self handleListeners];
+}
+
+- (void)startRtspPlayer:(NSString *) uriString {
+    RtspPlayerViewController *controller = [[RtspPlayerViewController alloc] initWithNibName:@"RtspPlayerViewController" bundle:NSBundle.mainBundle];
+    
+    [controller setVideoUrl:uriString];
+    
+    [self.viewController presentViewController:controller animated:YES completion:nil];
+    
 }
 
 - (void) handleListeners {

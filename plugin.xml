@@ -48,6 +48,21 @@
 		<source-file src="src/ios/LandscapeVideo.m" />
 		<header-file src="src/ios/PortraitVideo.h" />
 		<source-file src="src/ios/PortraitVideo.m" />
+        
+        <header-file src="src/ios/RtspPlayer/RtspPlayerViewController.h" />
+        <source-file src="src/ios/RtspPlayer/RtspPlayerViewController.m" />
+        <resource-file src="src/ios/RtspPlayer/RtspPlayerViewController.xib" />
+        
+        <header-file src="src/ios/RtspPlayer/include/M3U8.h" />
+        <header-file src="src/ios/RtspPlayer/include/MediaPlayer.h" />
+        <header-file src="src/ios/RtspPlayer/include/MediaPlayerConfig.h" />
+        <header-file src="src/ios/RtspPlayer/include/MediaPlayerPlaySegment.h" />
+        <header-file src="src/ios/RtspPlayer/include/Thumbnailer.h" />
+        <header-file src="src/ios/RtspPlayer/include/ThumbnailerConfig.h" />
+        
+        <source-file src="src/ios/RtspPlayer/libMediaPlayerSDK.a" framework="true" />
+        <framework src="src/ios/RtspPlayer/ffmpeg.framework" custom="true" />
+        
 		<framework src="MediaPlayer.framework" />
 	</platform>
 
