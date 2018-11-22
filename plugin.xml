@@ -61,7 +61,7 @@
         <header-file src="src/ios/RtspPlayer/include/ThumbnailerConfig.h" />
         
         <source-file src="src/ios/RtspPlayer/libMediaPlayerSDK.a" framework="true" />
-        <framework src="src/ios/RtspPlayer/ffmpeg.framework" custom="true" />
+        <framework src="src/ios/RtspPlayer/ffmpeg.framework" embed="true" custom="true" />
         
 		<framework src="MediaPlayer.framework" />
 	</platform>
