@@ -52,6 +52,7 @@
         <header-file src="src/ios/RtspPlayer/RtspPlayerViewController.h" />
         <source-file src="src/ios/RtspPlayer/RtspPlayerViewController.m" />
         <resource-file src="src/ios/RtspPlayer/RtspPlayerViewController.xib" />
+        <resource-file src="src/ios/RtspPlayer/RtspPlayer.bundle" />
         
         <header-file src="src/ios/RtspPlayer/include/M3U8.h" />
         <header-file src="src/ios/RtspPlayer/include/MediaPlayer.h" />

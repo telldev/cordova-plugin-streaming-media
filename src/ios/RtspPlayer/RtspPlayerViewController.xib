@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RtspPlayerViewController">
             <connections>
+                <outlet property="closeButton" destination="cYM-c7-alb" id="8Qw-2F-x3o"/>
                 <outlet property="streamLoadingIndicatorView" destination="DoN-om-Z2I" id="D8y-re-XM9"/>
                 <outlet property="videoBaseView" destination="Uld-p6-KeL" id="D9d-aw-goz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -37,12 +38,12 @@
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYM-c7-alb">
                     <rect key="frame" x="8" y="28" width="40" height="40"/>
-                    <color key="backgroundColor" red="0.7693184435" green="0.88925779360000001" blue="0.98215061429999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.55294117649999996" green="0.55294117649999996" blue="0.55294117649999996" alpha="0.5" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="6L1-T5-68X"/>
                         <constraint firstAttribute="height" constant="40" id="Tlv-ph-tzO"/>
                     </constraints>
-                    <state key="normal" title="X"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <action selector="closeButtonAction:" destination="-1" eventType="touchUpInside" id="goE-1U-cYh"/>
                     </connections>

@@ -14,6 +14,7 @@
 @implementation RtspPlayerViewController {
     __weak IBOutlet UIView *videoBaseView;
     __weak IBOutlet UIActivityIndicatorView *streamLoadingIndicatorView;
+    __weak IBOutlet UIButton *closeButton;
     
     MediaPlayer* player;
     MediaPlayerConfig* mediaConfig;
@@ -22,6 +23,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [closeButton setImage:[UIImage imageNamed:@"RtspPlayer.bundle/icn_close"] forState:UIControlStateNormal];
+    [closeButton.layer setCornerRadius:8];
 
     [self setupStream:self.videoUrl];
 }
