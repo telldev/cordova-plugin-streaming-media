@@ -30,6 +30,12 @@
     [self setupStream:self.videoUrl];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationWillEnterForegroundNotification object:self];
+}
+
 - (void)setupStream:(NSString *)withUrlString {
     
     mediaConfig    = [[MediaPlayerConfig alloc] init];
