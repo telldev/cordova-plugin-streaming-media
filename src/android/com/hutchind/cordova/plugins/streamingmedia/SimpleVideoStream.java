@@ -113,61 +113,61 @@ public class SimpleVideoStream extends Activity implements MediaPlayer.MediaPlay
 
 	@Override
 	public void onStart() {
-			super.onStart();
-			if (mediaPlayer != null)
-					mediaPlayer.onStart();
+		super.onStart();
+		if (mediaPlayer != null)
+				mediaPlayer.onStart();
 	}
 
 	@Override
 	public void onStop() {
-			super.onStop();
-			if (mediaPlayer != null)
-					mediaPlayer.onStop();
+		super.onStop();
+		if (mediaPlayer != null)
+				mediaPlayer.onStop();
 	}
 
 	@Override
 	public void onPause() {
-			super.onPause();
-			if (mediaPlayer != null)
-					mediaPlayer.onPause();
+		super.onPause();
+		if (mediaPlayer != null)
+				mediaPlayer.onPause();
 	}
 
 	@Override
 	public void onBackPressed() {
-			super.onBackPressed();
-			if (mediaPlayer != null)
-					mediaPlayer.Close();
+		super.onBackPressed();
+		if (mediaPlayer != null)
+				mediaPlayer.Close();
 	}
 
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
-			super.onWindowFocusChanged(hasFocus);
-			if (mediaPlayer != null)
-					mediaPlayer.onWindowFocusChanged(hasFocus);
+		super.onWindowFocusChanged(hasFocus);
+		if (mediaPlayer != null)
+				mediaPlayer.onWindowFocusChanged(hasFocus);
 	}
 
 	@Override
 	public void onLowMemory() {
-			super.onLowMemory();
-			if (mediaPlayer != null)
-					mediaPlayer.onLowMemory();
+		super.onLowMemory();
+		if (mediaPlayer != null)
+				mediaPlayer.onLowMemory();
 	}
 
 	@Override
 	public void onDestroy() {
-			super.onDestroy();
-			if (mediaPlayer != null)
-					mediaPlayer.onDestroy();
+		super.onDestroy();
+		if (mediaPlayer != null)
+				mediaPlayer.onDestroy();
 	}
 
 	@Override
 	public int Status(int i) {
-			return 0;
+		return 0;
 	}
 
 	@Override
 	public int OnReceiveData(ByteBuffer byteBuffer, int i, long l) {
-			return 0;
+		return 0;
 	}
 
 	@Override
