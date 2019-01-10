@@ -75,8 +75,6 @@ public class SimpleVideoStream extends Activity implements MediaPlayer.MediaPlay
 		mProgressBar.setVisibility(View.VISIBLE);
 		try {
 			mediaPlayer.getSurfaceView().setZOrderOnTop(true);
-//			SurfaceHolder trackHolder = mediaPlayer.getSurfaceView().getHolder();
-//			trackHolder.setFormat(android.R.color.transparent);
 			MediaPlayerConfig config = new MediaPlayerConfig();
 			config.setConnectionUrl(mVideoUrl);
 			config.setConnectionBufferingTime(300);
