@@ -32,6 +32,8 @@ public class SimpleVideoStream extends Activity implements MediaPlayer.MediaPlay
 	private Boolean mShouldAutoClose = true;
 	private boolean mControls;
 
+	final int PLP_ERROR = 10;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -162,6 +164,8 @@ public class SimpleVideoStream extends Activity implements MediaPlayer.MediaPlay
 
 	@Override
 	public int Status(int i) {
+		if (i == PLP_ERROR)
+			finish();
 		return 0;
 	}
 
