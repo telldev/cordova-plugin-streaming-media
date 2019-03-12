@@ -87,8 +87,10 @@
             
         } break;
         case PLP_ERROR: {
-            [self showError:@"Error" msg: @"Something wrong with pipeline"];
-            [player Close];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [player Close];
+                [self dismissViewControllerAnimated:YES completion:nil];
+            });
         } break;
         case PLP_TRIAL_VERSION: {
             // close and start again
