@@ -14,7 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RtspPlayerViewController : UIViewController<MediaPlayerCallback>
 
     @property NSString *videoUrl;
-
+    @property (nonatomic, copy) void (^errorHandler)(NSString*);
+    @property (nonatomic, copy) void (^successHandler)(void);
+    
 @end
 
 NS_ASSUME_NONNULL_END

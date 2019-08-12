@@ -19,6 +19,7 @@
     MediaPlayer* player;
     MediaPlayerConfig* mediaConfig;
     
+    NSTimer* timeoutTimer;
 }
 
 - (void)viewDidLoad {
@@ -59,6 +60,8 @@
     [mediaConfig setPlayerMode:PP_MODE_ALL];
     [player Open:mediaConfig callback: self];
     
+    timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:25 target:self selector:@selector(timeoutHandler:) userInfo:nil repeats:NO];
+    
 }
 
 
@@ -80,16 +83,35 @@
     });
 }
 
+- (void)timeoutHandler:(NSTimer *)timer {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self invalidateTimeoutTimer];
+        [self->player Close];
+        [self dismissViewControllerAnimated:YES completion:nil];
+        self.errorHandler(@"RTSP_TIMEOUT");
+    });
+}
+
+- (void)invalidateTimeoutTimer {
+    if (self->timeoutTimer != nil ) {
+        [self->timeoutTimer invalidate];
+        self->timeoutTimer = nil;
+    }
+}
+
 - (int)Status:(MediaPlayer *)player args:(int)arg {
     MediaPlayerNotifyCodes nc = arg;
     switch (nc) {
         case PLP_EOS: {
             
         } break;
+        case CP_CONNECT_FAILED:
         case PLP_ERROR: {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [player Close];
+                [self invalidateTimeoutTimer];
+                [self->player Close];
                 [self dismissViewControllerAnimated:YES completion:nil];
+                self.errorHandler(@"RTSP_ERROR");
             });
         } break;
         case PLP_TRIAL_VERSION: {
@@ -102,10 +124,14 @@
         case PLP_PLAY_SUCCESSFUL:
         case PLP_PLAY_PLAY: {
             NSLog(@"Start playing");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self invalidateTimeoutTimer];
+                self.successHandler();
+            });
         } break;
         case VRP_FIRSTFRAME: {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [streamLoadingIndicatorView stopAnimating];
+                [self->streamLoadingIndicatorView stopAnimating];
             });
         } break;
         default: {
