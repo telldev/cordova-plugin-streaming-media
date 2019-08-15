@@ -20,6 +20,8 @@
     MediaPlayerConfig* mediaConfig;
     
     NSTimer* timeoutTimer;
+
+    BOOL isClose;
 }
 
 - (void)viewDidLoad {
@@ -58,6 +60,8 @@
     [videoBaseView sendSubviewToBack: [player contentView]];
     
     [mediaConfig setPlayerMode:PP_MODE_ALL];
+
+    isClose = NO;
     [player Open:mediaConfig callback: self];
     
     timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:25 target:self selector:@selector(timeoutHandler:) userInfo:nil repeats:NO];
@@ -66,6 +70,7 @@
 
 
 - (IBAction)closeButtonAction:(UIButton *)sender {
+    isClose = YES;
     
     if (player) {
         [player Close];
@@ -111,7 +116,9 @@
                 [self invalidateTimeoutTimer];
                 [self->player Close];
                 [self dismissViewControllerAnimated:YES completion:nil];
-                self.errorHandler(@"RTSP_ERROR");
+                if ( !self->isClose ) {
+                    self.errorHandler(@"RTSP_ERROR");
+                }
             });
         } break;
         case PLP_TRIAL_VERSION: {
@@ -126,7 +133,9 @@
             NSLog(@"Start playing");
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self invalidateTimeoutTimer];
-                self.successHandler();
+                if ( !self->isClose ) {
+                    self.successHandler();
+                }
             });
         } break;
         case VRP_FIRSTFRAME: {
