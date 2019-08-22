@@ -33,6 +33,7 @@ public class SimpleVideoStream extends Activity implements MediaPlayer.MediaPlay
 	private boolean mControls;
 
 	final int PLP_ERROR = 10;
+	final int CONNECTION_FAILED = 103;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +83,8 @@ public class SimpleVideoStream extends Activity implements MediaPlayer.MediaPlay
 			config.setConnectionBufferingTime(300);
 			config.setConnectionDetectionTime(1000);
 			config.setSynchroNeedDropVideoFrames(1);
-			config.setDataReceiveTimeout(30000);
+			config.setDataReceiveTimeout(10000);
+			config.setConnectionTimeout(25000);
 			config.setNumberOfCPUCores(0);
 			mediaPlayer.Open(config, this);
 		} catch (Throwable t) {
@@ -164,8 +166,12 @@ public class SimpleVideoStream extends Activity implements MediaPlayer.MediaPlay
 
 	@Override
 	public int Status(int i) {
-		if (i == PLP_ERROR)
+		if (i == PLP_ERROR || i == CONNECTION_FAILED) {
+			Intent intent = new Intent();
+			intent.putExtra("message", "RTSP_ERROR");
+			setResult(Activity.RESULT_CANCELED, intent);
 			finish();
+		}
 		return 0;
 	}
 
