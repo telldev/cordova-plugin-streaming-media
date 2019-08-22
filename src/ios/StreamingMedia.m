@@ -247,6 +247,14 @@ NSString * const DEFAULT_IMAGE_SCALE = @"center";
     RtspPlayerViewController *controller = [[RtspPlayerViewController alloc] initWithNibName:@"RtspPlayerViewController" bundle:NSBundle.mainBundle];
     
     [controller setVideoUrl:uriString];
+
+    controller.errorHandler = ^void(NSString *errorString) {
+        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:errorString] callbackId:self->callbackId];
+    };
+    
+    controller.successHandler = ^void() {
+        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:true] callbackId:self->callbackId];
+    };
     
     [self.viewController presentViewController:controller animated:YES completion:nil];
     
