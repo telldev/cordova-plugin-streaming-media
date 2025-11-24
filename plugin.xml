@@ -102,6 +102,11 @@
 		<source-file src="src/android/libs/x86/librtstm-x86.so" target-dir="libs/x86"/>
 		<source-file src="src/android/libs/x86/libyuv_shared-x86.so" target-dir="libs/x86"/>
 
+		<source-file src="src/android/libs/x86_64/libffmpeg-x86_64.so" target-dir="libs/x86_64"/>
+		<source-file src="src/android/libs/x86_64/librtspplr-x86_64.so" target-dir="libs/x86_64"/>
+		<source-file src="src/android/libs/x86_64/librtstm-x86_64.so" target-dir="libs/x86_64"/>
+		<source-file src="src/android/libs/x86_64/libyuv_shared-x86_64.so" target-dir="libs/x86_64"/>
+
 		<source-file src="src/android/libs/mediaplayersdk.jar" target-dir="libs"/>
 	</platform>
 
